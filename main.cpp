@@ -4,9 +4,9 @@ using namespace std;
 #include "sorting.h"
 
 int main() {
-  cout << "Welcome to Pet Store." << endl;
+  cout << "Data collector and filtering for Pet Store." << endl;
   int n;
-  cout << "Number of costumers? ";
+  cout << "Number of customers? ";
   cin >> n;
   cout << "Please fill in the information below." << endl;
   int no = 1;
@@ -16,7 +16,7 @@ int main() {
     cout << "#" << no << endl;
     cout << "Owner: ";
     cin >> (*(d + no - 1)).name;
-    cout << "Name:";
+    cout << "Dog's Name: ";
     cin >> (*(d + no - 1)).dname;
     cout << "Species/Breed? ";
     cin >> (*(d + no - 1)).species;
@@ -31,28 +31,15 @@ int main() {
       (*(d + no - 1)).vaccine = 1;
     } 
     else (*(d + no - 1)).vaccine = 0;
-    cout << "Which brand of dog food you whould like to purchase? (input the "
-            "number!) "
-         << endl;
+    cout << "Which brand of dog food did the customer buy: "<< endl;
     int k;
-    while(1){
     cout << "1. Purina Pro Plan" << endl
          << "2. Pedigree" << endl
          << "3. Royal chain" << endl
-         << "4. Bil-Jac"
-         << "Your order: " << endl;
-    
+         << "4. Bil-Jac"<<endl
+         << "Order: ";
     cin >> k;
-      if (k<=4&&k>=1) break;
-    }
-    /*switch (k)
-    {
-      case 1: (*(d+no-1)).snack="Purina Pro Plan\n"; break; // prints "1",
-      case 2: (*(d+no-1)).snack="Pedigree\n"; break; // then prints "2"
-      case 3: (*(d+no-1)).snack="Royal chain\n"; break;
-      case 4: (*(d+no-1)).snack="Bil-Jac\n"; break;
-      default:std::cout << "default\n"; break;
-    }*/
+
     if (k == 1){
       (*(d + no - 1)).snack = "Purina Pro Plan";
       (*(d + no - 1)).foodcode = 1;
@@ -72,19 +59,9 @@ int main() {
     no += 1;
     cout << endl;
   }
-  cout << "Choose what you want to do with the data. " << endl;
-  cout << "1. List each dog's name from youngest to oldest" << endl
-       << "2. Tell the most popular dog's food" << endl
-       << "3. Tell whose dog is the youngest" << endl
-       << "4. Tell me whose dog is the oldest" << endl
-       << "5. Tell me which dog is vaccinated or not vaccinated." << endl
-       << "6. Summarize all data briefly." << endl;
-  int a;
   int i;
-  cin >> a;
-
-    int q,w,e,r;
-    for (i=0;i<n;i++){
+    int q=0,w=0,e=0,r=0;
+    for (i=0;i<n;i++){ //this code will check the most popular dog's food
       if(d[i].foodcode==1) q++;
       if(d[i].foodcode==2) w++;
       if(d[i].foodcode==3) e++;
@@ -102,68 +79,86 @@ int main() {
   
   dog *c=new dog[n];
   
-  for(i=0;i<n;i++){
+  for(i=0;i<n;i++){    //this loop will duplicate the pointer data
     c[i]=d[i];
   }
   int order[n];
   for(i=0;i<n;i++){
     order[i]=d[i].age;
   }
-  
+  int a;
+  while(1){
+  cout << "Choose what you want to do with the data " << endl;
+  cout << "1. List each dog's name from youngest to oldest" << endl
+       << "2. Tell the most popular dog's food" << endl
+       << "3. Tell me whose dog is the youngest" << endl
+       << "4. Tell me whose dog is the oldest" << endl
+       << "5. List me the vaccinated dogs and unvaccinated dog" << endl
+       <<"6. Tell me the average age of dog in the data list"<<endl
+       << "7. Summarize all data briefly" << endl<<"8. Cancel the selection"<<endl;
+  cin >> a;
+  if (a==8){
+    cout<<"Program terminated"<<endl;
+    break;
+  }
+    cout<<"======================================================"<<endl;
   if(a==1){
     int *list1=sort(order,n);
-    
+    cout<<"List of dog sorted from youngest to oldest"<<endl;
+    int count=1;
     for(i=0;i<n;i++){
-    cout<<d[list1[i]].dname;
+    cout<<"#"<<count<<". "<<d[list1[i]].dname<<" "<<d[list1[i]].age<<" years old."<<" Owner: "<<d[list1[i]].name<<endl;
+      count++;
   }
   }
   if(a==2)
-    cout<<"The most poplular dog's food is "<<dogfood<<endl;
+    cout<<"The most poplular dog food is "<<dogfood<<endl;
     
-  
   if (a==3){
     lowest(d,n);
   }
+    
   if (a==4){
     highest(d,n);
   }
-  /*dog *c=new dog[n];
-  
-  for(i=0;i<n;i++){
-    c[i]=d[i];
-  }
-  int order[n];
-  for(i=0;i<n;i++){
-    order[i]=d[i].age;
-  }
-  if(a==1){
-    int *list1=sort(order,n);
-    
-    for(i=0;i<n;i++){
-    cout<<d[list1[i]].dname;
-  }
-  }*/
+
   if (a==5){
-    cout<<"List of vaccinated dog."<<endl;
+    cout<<"List of vaccinated dogs."<<endl;
     int m=1,p=1;
     for(i=0;i<n;i++){
       if (d[i].vaccine==1){
-        cout<<m<<". "<<d[i].dname<<endl;
+        cout<<m<<". "<<d[i].dname<<". Owner: "<<d[i].name<<endl;
         m++;
       }
     }
-    cout<<"List of unvaccinated dog."<<endl;
+    cout<<"List of unvaccinated dogs."<<endl;
     for(i=0;i<n;i++){
       if (d[i].vaccine==0){
-        cout<<p<<". "<<d[i].dname<<endl;
+        cout<<p<<". "<<d[i].dname<<". Owner: "<<d[i].name<<endl;
         p++;
       }
     }
   }
-  if (a==6){
-    cout<<"Number of costumer = "<<n<<endl;
+    int y=0; 
+    float mean=0;
+  if(a==6){
+    for (i=0;i<n;i++){
+      mean+=d[i].age;
+      y++;
+      }
+    mean=mean/y;
+    cout<<"The average age of the dogs in the data list is: "<<mean<<endl;
+  }
+  if (a==7){
+    cout<<"Number of customers = "<<n<<endl;
     lowest(d,n);
     highest(d,n);
+    for (i=0;i<n;i++){
+      mean+=d[i].age;
+      y++;
+      }
+    mean=mean/y;
+    cout<<"The average age of dog in the data list is: "<<mean<<endl;
     int m=0,p=0;
     for(i=0;i<n;i++){
       if (d[i].vaccine==1) m++;
@@ -173,10 +168,11 @@ int main() {
     }
     cout<<"Number of Vaccinated dogs = "<<m<<endl;
     cout<<"Number of Unvaccinated dogs = "<<p<<endl;
-    cout<<"The most popular dog's food is "<<dogfood<<endl;
+    cout<<"The most popular dog food is: "<<dogfood<<endl;
   }
-  
-  
+  cout<<"======================================================"<<endl;
+  cout<<endl;
+  }
 }
 
 
@@ -195,3 +191,29 @@ int main() {
   case 5: break;
   default:std::cout << "default\n"; break;
 }*/
+
+/*dog *c=new dog[n];
+  
+  for(i=0;i<n;i++){
+    c[i]=d[i];
+  }
+  int order[n];
+  for(i=0;i<n;i++){
+    order[i]=d[i].age;
+  }
+  if(a==1){
+    int *list1=sort(order,n);
+    
+    for(i=0;i<n;i++){
+    cout<<d[list1[i]].dname;
+  }
+  }*/
+
+/*switch (k)
+    {
+      case 1: (*(d+no-1)).snack="Purina Pro Plan\n"; break; // prints "1",
+      case 2: (*(d+no-1)).snack="Pedigree\n"; break; // then prints "2"
+      case 3: (*(d+no-1)).snack="Royal chain\n"; break;
+      case 4: (*(d+no-1)).snack="Bil-Jac\n"; break;
+      default:std::cout << "default\n"; break;
+    }*/
