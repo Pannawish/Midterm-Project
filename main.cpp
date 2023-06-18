@@ -15,16 +15,16 @@ int main() {
   while ((no - 1) != n) {
     cout << "#" << no << endl;
     cout << "Owner: ";
-    cin >> (*(d + no - 1)).name;
+    cin >> (*(d + no - 1)).owner_name;
     cout << "Dog's Name: ";
-    cin >> (*(d + no - 1)).dname;
+    cin >> (*(d + no - 1)).dog_name;
     cout << "Species/Breed? ";
     cin >> (*(d + no - 1)).species;
     
     cout << "Age: ";
     cin >> (*(d + no - 1)).age;
       
-    cout << "Hisotry of vaccination?\n (Yes(1) or No(0)):";
+    cout << "History of vaccination?\n (Yes(1) or No(0)):";
     int ans;
     cin >> ans;
     if (ans == 1) {
@@ -56,7 +56,7 @@ int main() {
       (*(d + no - 1)).snack = "Bil-Jac";
       (*(d + no - 1)).foodcode = 4;
     }
-    no += 1;
+    no++;
     cout << endl;
   }
   int i;
@@ -107,7 +107,7 @@ int main() {
     cout<<"List of dog sorted from youngest to oldest"<<endl;
     int count=1;
     for(i=0;i<n;i++){
-    cout<<"#"<<count<<". "<<d[list1[i]].dname<<" "<<d[list1[i]].age<<" years old."<<" Owner: "<<d[list1[i]].name<<endl;
+    cout<<"#"<<count<<". "<<d[list1[i]].dog_name<<" "<<d[list1[i]].age<<" years old."<<" Owner: "<<d[list1[i]].owner_name<<endl;
       count++;
   }
   }
@@ -127,14 +127,14 @@ int main() {
     int m=1,p=1;
     for(i=0;i<n;i++){
       if (d[i].vaccine==1){
-        cout<<m<<". "<<d[i].dname<<". Owner: "<<d[i].name<<endl;
+        cout<<m<<". "<<d[i].dog_name<<". Owner: "<<d[i].owner_name<<endl;
         m++;
       }
     }
     cout<<"List of unvaccinated dogs."<<endl;
     for(i=0;i<n;i++){
       if (d[i].vaccine==0){
-        cout<<p<<". "<<d[i].dname<<". Owner: "<<d[i].name<<endl;
+        cout<<p<<". "<<d[i].dog_name<<". Owner: "<<d[i].owner_name<<endl;
         p++;
       }
     }
@@ -205,7 +205,7 @@ int main() {
     int *list1=sort(order,n);
     
     for(i=0;i<n;i++){
-    cout<<d[list1[i]].dname;
+    cout<<d[list1[i]].dog_name;
   }
   }*/
 
@@ -215,5 +215,5 @@ int main() {
       case 2: (*(d+no-1)).snack="Pedigree\n"; break; // then prints "2"
       case 3: (*(d+no-1)).snack="Royal chain\n"; break;
       case 4: (*(d+no-1)).snack="Bil-Jac\n"; break;
-      default:std::cout << "default\n"; break;
+      default: std::cout << "unknown"; break;
     }*/

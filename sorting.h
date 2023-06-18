@@ -7,7 +7,7 @@ void lowest(dog *d, int n){
       min=i;
     }
   }
-  cout<<"The youngest dog is "<<d[min].dname<<", "<<d[min].age<<" years old. Owner: "<<d[min].name<<endl;
+  cout<<"The youngest dog is: "<<d[min].dog_name<<", "<<d[min].age<<" years old. Owner: "<<d[min].owner_name<<endl;
 }
 
 void highest(dog *d, int n){
@@ -17,7 +17,7 @@ void highest(dog *d, int n){
       max=i;
     }
   }
-  cout<<"The oldest dog is a "<<d[max].dname<<", "<<d[max].age<<" years old. Owner: "<<d[max].name<<endl;
+  cout<<"The oldest dog is: "<<d[max].dog_name<<", "<<d[max].age<<" years old. Owner: "<<d[max].owner_name<<endl;
 }
 
 int* sort(int d[], int length) 

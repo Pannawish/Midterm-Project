@@ -1,13 +1,14 @@
 #ifndef class_h
 #define class_h
+#include <string.h>
 
 class dog
 {
 public:
   string species;
   int age;
-  string name; //owner name
-  string dname; //dog name
+  string owner_name; //owner name
+  string dog_name; //dog name
   int vaccine;
   string snack;
   int foodcode;
@@ -16,10 +17,10 @@ public:
 dog::dog(){
   species = "unidentified";
   age = 0;
-  name = "unidentified";
-  dname = "unidentified";
+  owner_name = "N/A";
+  dog_name = "Unspecified";
   vaccine = 0;
-  snack = "unidentified";
+  snack = "Unknown";
   foodcode = 0;
 }
 
